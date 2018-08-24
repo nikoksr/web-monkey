@@ -4,6 +4,8 @@ Small webcrawler created with the imagination of monkeys jumping from tree to tr
 
 Idea
 ====
+* *Url Monkey
+  ==========
 A monkey jumps on a tree which represents an URL. On his way climbing up the tree
 the monkey discovers many branches which visualize sub-urls of the main-url.
 
@@ -20,6 +22,10 @@ a look on his list of noted trees, chooses the first tree on the list following 
 tree and jumps over to it.
 
 He repeats this process over and over again.
+
+* Pic Monkey
+  ==========
+
 
 Python
 ======
