@@ -8,8 +8,8 @@ A monkey jumps on a tree which represents an URL. On his way climbing up the tre
 the monkey discovers many branches which visualize sub-urls of the main-url.
 
 Example_:
-            main-url(tree):  https://www.python.org/
-            sub-url(branch): https://www.python.org/about/
+* main-url(tree):  https://www.python.org/
+* sub-url(branch): https://www.python.org/about/
 
 All of them are being noted on a list of known trees, but only if they aren't already
 known and noted at this point in time. On his way to the treetop the monkey eventually 
@@ -18,6 +18,7 @@ aslong as they are not already known and he keeps on climbing towards the top. R
 top the monkey has discovered every single branch surrounding his tree. He decides to take
 a look on his list of noted trees, chooses the first tree on the list following his current
 tree and jumps over to it.
+
 He repeats this process over and over again.
 
 Python
