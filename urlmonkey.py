@@ -1,4 +1,5 @@
 """ imports """
+import argparse
 from bs4 import BeautifulSoup
 import requests
 
@@ -58,7 +59,12 @@ class UrlMonkey():
 
 
 if __name__ == '__main__':
-    ROOT_URL = 'http://www.python.org'
+    PARSER = argparse.ArgumentParser()
+    PARSER.add_argument("url", help="Enter a valid url to "
+                                    "start the infinite search "
+                                    "for all branches and trees "
+                                    "surrounding it")
 
+    ARGS = PARSER.parse_args()
     DONKEY_KONG = UrlMonkey()
-    DONKEY_KONG.find_trees(ROOT_URL)
+    DONKEY_KONG.find_trees(ARGS.url)
