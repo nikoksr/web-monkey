@@ -102,13 +102,12 @@ class PicMonkey():
 
 if __name__ == '__main__':
     PARSER = argparse.ArgumentParser()
-
     PARSER.add_argument("url", help="Enter a valid url to "
                                     "start the search for "
                                     "all pictures on this "
                                     "website")
     PARSER.add_argument("--tag", help="Enter a tag to specify your "
-                                      "search.")
+                                      "search")
     ARGS = PARSER.parse_args()
     DONKEY_KONG = PicMonkey()
 
