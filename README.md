@@ -7,7 +7,7 @@ Idea
 A monkey jumps on a tree which represents an URL. On his way climbing up the tree
 the monkey discovers many branches which visualize sub-urls of the main-url.
 
-Example_:
+Example_
 * main-url(tree):  https://www.python.org/
 * sub-url(branch): https://www.python.org/about/
 
