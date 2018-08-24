@@ -1,11 +1,10 @@
-Web Monkey
+#Web Monkey
 ==========
 Small webcrawler created with the imagination of monkeys jumping from tree to tree
 
-Idea
+#Idea
 ====
-* *Url Monkey
-  ==========
+##*Url Monkey
 A monkey jumps on a tree which represents an URL. On his way climbing up the tree
 the monkey discovers many branches which visualize sub-urls of the main-url.
 
@@ -23,8 +22,7 @@ tree and jumps over to it.
 
 He repeats this process over and over again.
 
-* Pic Monkey
-  ==========
+##Pic Monkey
 
 
 Python
