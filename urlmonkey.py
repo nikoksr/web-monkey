@@ -34,26 +34,25 @@ class UrlMonkey():
             for known_tree in self.known_trees:
                 print('> ' + known_tree)
 
-                search_trees = requests.get(known_tree)
+                search_branches = requests.get(known_tree)
+                branches = BeautifulSoup(
+                    search_branches.content, 'html.parser')
 
-                found_trees = BeautifulSoup(
-                    search_trees.content, 'html.parser')
+                branches = branches.find_all('a')
 
-                trees = found_trees.find_all('a')
-
-                if trees is None:
+                if branches is None:
                     continue
 
-                for tree in trees:
-                    new_tree = tree.get('href')
+                for branch in branches:
+                    branch = branch.get('href')
 
-                    if (new_tree is None
-                            or new_tree[0:4] != 'http'
-                            or new_tree in self.known_trees):
+                    if (branch is None
+                            or branch[0:4] != 'http'
+                            or branch in self.known_trees):
                         continue
 
-                    self.known_trees.append(new_tree)
-                    print('\t> ' + new_tree)
+                    self.known_trees.append(branch)
+                    print('\t> ' + branch)
         except KeyboardInterrupt:
             pass
 
