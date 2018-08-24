@@ -5,7 +5,7 @@ import requests
 
 class UrlMonkey():
     """
-    Web crawler class called (url-)monkeys
+    Web crawler class called (url-)monkey
         * They swing from tree to tree and discover
             branches and new trees
         * Every tree represents a main-url
