@@ -39,4 +39,4 @@ Idea
 Python
 ======
 
-Python 3.7 and pylint 2.1.1.1
+Python 3.7 and pylint 2.1.1
