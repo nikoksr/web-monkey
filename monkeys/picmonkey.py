@@ -30,7 +30,6 @@ class PicMonkey():
 
         return branch
 
-
     @staticmethod
     def __find_leafs(tree):
         """
@@ -44,7 +43,6 @@ class PicMonkey():
         leafs = branches.find_all('img')
 
         return leafs
-
 
     def look_for_specific_pics(self, tree=None, tag=None):
         """ Searches for pictures which include the given tag """
@@ -74,7 +72,6 @@ class PicMonkey():
         except KeyboardInterrupt:
             pass
 
-
     def look_for_all_pics(self, tree=None):
         """ Searches for all pictures on a given website """
 
@@ -102,12 +99,13 @@ class PicMonkey():
 
 if __name__ == '__main__':
     PARSER = argparse.ArgumentParser()
-    PARSER.add_argument("url", help="Enter a valid url to "
-                                    "start the search for "
-                                    "all pictures on this "
-                                    "website")
-    PARSER.add_argument("--tag", help="Enter a tag to specify your "
-                                      "search")
+    PARSER.add_argument(
+        "url",
+        help="Enter a valid url to "
+        "start the search for "
+        "all pictures on this "
+        "website")
+    PARSER.add_argument("--tag", help="Enter a tag to specify your " "search")
     ARGS = PARSER.parse_args()
     DONKEY_KONG = PicMonkey()
 
