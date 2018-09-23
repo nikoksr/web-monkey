@@ -7,16 +7,14 @@ import requests
 class UrlMonkey():
     """
     Web crawler class called (url-)monkey
-        * They swing from tree to tree and discover
-            branches and new trees
+        * They swing from tree to tree and discover branches and new trees
         * Every tree represents a main-url
             (e.g.   - main: https://www.python.org/
                     - main: https://www.google.com/)
         * Every branch represents a sub-url
             (e.g.   - main: https://www.python.org/
                     - sub:  https://www.python.org/about/)
-        * Every unique tree or branch gets reported
-            to the user
+        * Every unique tree or branch gets reported to the user
     """
 
     def __init__(self):
@@ -36,9 +34,8 @@ class UrlMonkey():
                 print('> ' + known_tree)
 
                 search_branches = requests.get(known_tree)
-                branches = BeautifulSoup(search_branches.content,
-                                         'html.parser')
-
+                branches = BeautifulSoup(
+                    search_branches.content, 'html.parser')
                 branches = branches.find_all('a')
 
                 if branches is None:
@@ -61,10 +58,7 @@ if __name__ == '__main__':
     PARSER = argparse.ArgumentParser()
     PARSER.add_argument(
         "url",
-        help="Enter a valid url to "
-        "start the infinite search "
-        "for all branches and trees "
-        "surrounding it")
+        help="Enter a valid url to start the infinite search for all branches " "and trees surrounding it")
 
     ARGS = PARSER.parse_args()
     DONKEY_KONG = UrlMonkey()
