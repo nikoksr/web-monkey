@@ -58,7 +58,6 @@ class UrlMonkey():
                 print('> ' + known_tree)
 
                 root = self.get_tree_root(known_tree)
-
                 search_branches = requests.get(known_tree)
                 branches = BeautifulSoup(search_branches.content,
                                          'html.parser')
@@ -93,7 +92,7 @@ if __name__ == '__main__':
     PARSER.add_argument(
         "url",
         help="Enter a valid url to start the infinite search for all branches "
-        "and trees surrounding it")
+        "and trees surrounding it (as example: https://www.python.org/)")
 
     ARGS = PARSER.parse_args()
     DONKEY_KONG = UrlMonkey()
