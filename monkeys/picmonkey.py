@@ -105,7 +105,7 @@ if __name__ == '__main__':
         "start the search for "
         "all pictures on this "
         "website")
-    PARSER.add_argument("--tag", help="Enter a tag to specify your " "search")
+    PARSER.add_argument("--tag", help="Enter a tag to specify your search")
     ARGS = PARSER.parse_args()
     DONKEY_KONG = PicMonkey()
 
