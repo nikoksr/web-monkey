@@ -23,6 +23,7 @@ class UrlMonkey():
 
         # this is going to be the list filled with trees and branches that are #    already known
         self.trees_and_branches = []
+        self.verbose = False
 
     @staticmethod
     def __get_tree_root(tree):
@@ -66,12 +67,15 @@ class UrlMonkey():
             if (not branch.endswith('/')):
                 branch += '/'
 
-            # check if branch or tree is already known and add it to    #   the list if not
+            # check if branch or tree is already known and add it to
+            #   the list if not
             if (branch in self.trees_and_branches):
                 continue
 
             self.trees_and_branches.append(branch)
-            print('\t> ' + branch)
+
+            if (self.verbose is True):
+                print('\t> ' + branch)
 
     def __go_through_tree_list(self):
         """ 
@@ -80,21 +84,25 @@ class UrlMonkey():
         """
 
         for known_tree in self.trees_and_branches:
-            print('> ' + known_tree)
+            if (self.verbose is True):
+                print('> ' + known_tree)
 
             # giving timeout of 10 seconds
             # prevent infinite requests
             try:
                 search_branches = requests.get(known_tree, timeout=10.0)
             except requests.exceptions.Timeout:
-                print("\t> timed out...")
+                if (self.verbose is True):
+                    print("\t> timed out...")
                 continue
 
             # check status-code returned by url
             # filter codes other than 200(ok code)
             if (search_branches.status_code != 200):
                 status_code = str(search_branches.status_code)
-                print("\t> returned " + status_code + "(bad code)...")
+
+                if (self.verbose is True):
+                    print("\t> returned " + status_code + "(bad code)...")
                 continue
 
             # parse html of requested page
@@ -105,12 +113,14 @@ class UrlMonkey():
             if (branches is None):
                 continue
 
-            # extract root
+            # extract root and investigate the tree
             root = self.__get_tree_root(known_tree)
             self.__investigate_tree(branches, root)
 
-    def search(self, tree=None):
+    def search(self, verbose, tree=None):
         """ Searches for new trees starting from the root """
+
+        self.verbose = verbose
 
         # check if user provided an url
         if tree is None:
@@ -134,10 +144,15 @@ class UrlMonkey():
 if __name__ == '__main__':
     PARSER = argparse.ArgumentParser()
     PARSER.add_argument(
-        "url",
-        help="Enter a valid url to start the infinite search for all branches "
-        "and trees surrounding it (as example: https://www.python.org/)")
+        '-v',
+        '--verbose',
+        action="store_true",
+        help='Enter this argument to enable verbosity')
+    PARSER.add_argument(
+        'url',
+        help='Enter a valid url to start the infinite search for all branches '
+        'and trees surrounding it (as example: https://www.python.org/)')
 
     ARGS = PARSER.parse_args()
     DONKEY_KONG = UrlMonkey()
-    DONKEY_KONG.search(ARGS.url)
+    DONKEY_KONG.search(ARGS.verbose, ARGS.url)
