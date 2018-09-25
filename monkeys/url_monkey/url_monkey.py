@@ -1,6 +1,4 @@
 """ imports """
-import argparse
-
 import requests
 from bs4 import BeautifulSoup
 
@@ -139,20 +137,3 @@ class UrlMonkey():
             self.__go_through_tree_list()
         except KeyboardInterrupt:
             pass
-
-
-if __name__ == '__main__':
-    PARSER = argparse.ArgumentParser()
-    PARSER.add_argument(
-        '-v',
-        '--verbose',
-        action="store_true",
-        help='Enter this argument to enable verbosity')
-    PARSER.add_argument(
-        'url',
-        help='Enter a valid url to start the infinite search for all branches '
-        'and trees surrounding it (as example: https://www.python.org/)')
-
-    ARGS = PARSER.parse_args()
-    DONKEY_KONG = UrlMonkey()
-    DONKEY_KONG.search(ARGS.verbose, ARGS.url)
