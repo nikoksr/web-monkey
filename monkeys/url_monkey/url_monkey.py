@@ -34,11 +34,11 @@ class UrlMonkey():
         counter = 0
 
         # iterate through string and return index of third slash
-        for i in range(len(tree)):
-            if (tree[i] == '/'):
+        for idx, letter in enumerate(tree):
+            if (letter == '/'):
                 counter += 1
                 if (counter == 3):
-                    return tree[:i + 1]
+                    return tree[:idx + 1]
 
         # append a slash if less than three slashes were found
         return (tree + '/')
