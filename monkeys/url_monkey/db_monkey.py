@@ -9,16 +9,22 @@ class DatabaseMonkey():
 
     def __init__(self, name):
         """ Init the db-monkey with the db-name """
+
+        # database name
         self.name = name
+        # create the database
         self.__create_db()
+        # attached url-monkey
         self.url_monkey = None
 
     def __create_db(self):
         """ Create a url-database """
 
+        # connect to database
         conn = sqlite3.connect(self.name)
         cursor = conn.cursor()
 
+        # create the table 'url' if it doesn't exist
         cursor.execute('create table if not exists urls (url text)')
         conn.commit()
         conn.close()
@@ -36,12 +42,15 @@ class DatabaseMonkey():
         """ Parse the urls from the url-monkey list into the database """
 
         try:
+            # connect to database
             conn = sqlite3.connect(self.name)
             cursor = conn.cursor()
 
+            # read every url from the url-monkey's list and insert it into the      table
             for url in self.url_monkey.trees_and_branches:
                 cursor.execute('insert or ignore into urls(url) values (?)',
                                (url, ))
+            # commit the changes
             conn.commit()
         finally:
             if (conn is not None):
