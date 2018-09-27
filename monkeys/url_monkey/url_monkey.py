@@ -19,7 +19,7 @@ class UrlMonkey():
     def __init__(self):
         """ Inits urlmonkey class with an empty tree list """
 
-        # this is going to be the list filled with trees and branches that are #    already known
+        # this is going to be the list filled with trees and branches that are      already known
         self.trees_and_branches = []
         self.verbose = False
 
@@ -53,8 +53,8 @@ class UrlMonkey():
             if (branch is None):
                 continue
 
-            # check if the link found is a new tree(main-url) or a      #   branch(sub-url)
-            # in case of sub-url append it to its root url to make a    #   full and wokring url
+            # check if the link found is a new tree(main-url) or a branch           (sub-url)
+            # in case of sub-url append it to its root url to make a full and       working url
             if (not branch.startswith('http')):
                 while (branch.startswith('/')):
                     branch = branch[1:]
@@ -65,8 +65,7 @@ class UrlMonkey():
             if (not branch.endswith('/')):
                 branch += '/'
 
-            # check if branch or tree is already known and add it to
-            #   the list if not
+            # check if branch or tree is already known and add it to the list       if not
             if (branch in self.trees_and_branches):
                 continue
 
