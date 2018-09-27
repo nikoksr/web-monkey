@@ -42,7 +42,7 @@ class DatabaseMonkey():
             for url in self.url_monkey.trees_and_branches:
                 cursor.execute('insert or ignore into urls(url) values (?)',
                                (url, ))
-                conn.commit()
+            conn.commit()
         finally:
             if (conn is not None):
                 conn.close()
