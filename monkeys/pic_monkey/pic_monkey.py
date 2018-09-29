@@ -6,8 +6,8 @@ import requests
 
 class PicMonkey():
     """
-        A monkey that either finds all pictures on a website
-        or searches for a picture with a specified tag
+    A monkey that either finds all pictures on a website
+    or searches for a picture with a specified tag
     """
 
     @staticmethod
@@ -33,9 +33,8 @@ class PicMonkey():
     @staticmethod
     def __find_leafs(tree):
         """
-            Finds leafs in a given tree
-            Leafs represent pictures which are found
-            at the different branches of a tree
+        Finds leafs in a given tree
+        Leafs represent pictures which are found at the different branches of a tree
         """
 
         search_branches = requests.get(tree)
