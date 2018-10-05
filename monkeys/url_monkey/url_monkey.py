@@ -16,20 +16,21 @@ class UrlMonkey():
         * Every unique tree or branch gets reported to the user
     """
 
-    def __init__(self):
+    def __init__(self, verbose=None):
         """ Inits urlmonkey class with an empty tree list """
 
         # this is going to be the list filled with trees and branches that are      already known
         self.trees_and_branches = []
-        self.verbose = False
+        self.verbose = verbose
 
     @staticmethod
     def __get_tree_root(tree):
         """ 
         Returns the root of a tree (main-url of a sub-url) 
-        e.g.:   tree: https://www.python.org/about/
-                root: https://www.python.org/
+        e.g.:   root: https://www.python.org/
+                tree: https://www.python.org/about/                
         """
+
         # occurrences of slash ('/')
         counter = 0
 
@@ -114,10 +115,8 @@ class UrlMonkey():
             root = self.__get_tree_root(known_tree)
             self.__investigate_tree(branches, root)
 
-    def search(self, verbose, tree=None):
+    def search(self, tree=None):
         """ Searches for new trees starting from the root """
-
-        self.verbose = verbose
 
         # check if user provided an url
         if tree is None:
