@@ -16,7 +16,7 @@ class UrlMonkey():
         * Every unique tree or branch gets reported to the user
     """
 
-    def __init__(self, verbose=None):
+    def __init__(self, verbose):
         """ Inits urlmonkey class with an empty tree list """
 
         # this is going to be the list filled with trees and branches that are      already known
@@ -32,13 +32,13 @@ class UrlMonkey():
         """
 
         # occurrences of slash ('/')
-        counter = 0
+        slash_counter = 0
 
         # iterate through string and return index of third slash
         for idx, letter in enumerate(tree):
             if (letter == '/'):
-                counter += 1
-                if (counter == 3):
+                slash_counter += 1
+                if (slash_counter == 3):
                     return tree[:idx + 1]
 
         # append a slash if less than three slashes were found
@@ -115,7 +115,7 @@ class UrlMonkey():
             root = self.__get_tree_root(known_tree)
             self.__investigate_tree(branches, root)
 
-    def search(self, tree=None):
+    def search(self, tree):
         """ Searches for new trees starting from the root """
 
         # check if user provided an url
