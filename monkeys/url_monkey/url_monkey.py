@@ -20,7 +20,9 @@ class UrlMonkey():
         """ Inits urlmonkey class with an empty tree list """
 
         # this is going to be the list filled with trees and branches that are      already known
+        # it's going to be multi-dimensional. The first value will be the           tree/url and the second value will be the url under which the           current url was found
         self.trees_and_branches = []
+        # user choice for verbosity
         self.verbose = verbose
 
     @staticmethod
@@ -44,8 +46,21 @@ class UrlMonkey():
         # append a slash if less than three slashes were found
         return (tree + '/')
 
-    def __investigate_tree(self, branches, root):
+    def __is_tree_known(self, tree):
+        """ tests if a given tree is already in the list """
+
+        for known_tree in self.trees_and_branches:
+            if (tree == known_tree[0]):
+                return 1
+        return 0
+
+    def __investigate_tree(self, branches, current_tree):
         """ iterate through all branches of the tree """
+
+        # find the root of the current tree
+        # e.g.: current tree    = https://www.python.org/downloads
+        #       root            = https://www.python.org/
+        root = self.__get_tree_root(current_tree)
 
         for branch in branches:
             # find all href attributes
@@ -67,10 +82,11 @@ class UrlMonkey():
                 branch += '/'
 
             # check if branch or tree is already known and add it to the list       if not
-            if (branch in self.trees_and_branches):
+            if (self.__is_tree_known(branch)):
                 continue
 
-            self.trees_and_branches.append(branch)
+            # found unique branch
+            self.trees_and_branches.append([branch, current_tree])
 
             if (self.verbose is True):
                 print('\t> ' + branch)
@@ -82,13 +98,15 @@ class UrlMonkey():
         """
 
         for known_tree in self.trees_and_branches:
+            tree_address = known_tree[0]
+
             if (self.verbose is True):
-                print('> ' + known_tree)
+                print('> ' + tree_address)
 
             # giving timeout of 10 seconds
-            # prevent infinite requests
+            # prevent infinite request-time
             try:
-                search_branches = requests.get(known_tree, timeout=10.0)
+                search_branches = requests.get(tree_address, timeout=10.0)
             except requests.exceptions.Timeout:
                 if (self.verbose is True):
                     print("\t> timed out...")
@@ -111,9 +129,8 @@ class UrlMonkey():
             if (branches is None):
                 continue
 
-            # extract root and investigate the tree
-            root = self.__get_tree_root(known_tree)
-            self.__investigate_tree(branches, root)
+            # investigate the tree
+            self.__investigate_tree(branches, tree_address)
 
     def search(self, tree):
         """ Searches for new trees starting from the root """
@@ -129,7 +146,7 @@ class UrlMonkey():
             tree += '/'
 
         # add starting-tree to list
-        self.trees_and_branches.append(tree)
+        self.trees_and_branches.append([tree, "None"])
 
         try:
             self.__go_through_tree_list()
