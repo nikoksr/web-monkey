@@ -1,9 +1,8 @@
-""" imports """
 import requests
 from bs4 import BeautifulSoup
 
 
-class UrlMonkey():
+class UrlMonkey:
     """
     Web crawler class called (url-)monkey
         * They swing from tree to tree and discover branches and new trees
@@ -19,8 +18,9 @@ class UrlMonkey():
     def __init__(self, verbose):
         """ Inits urlmonkey class with an empty tree list """
 
-        # this is going to be the list filled with trees and branches that are      already known
-        # it's going to be multi-dimensional. The first value will be the           tree/url and the second value will be the url under which the           current url was found
+        # This is going to be the list filled with trees and branches that are already known.
+        # It's going to be multi-dimensional. The first value will be the tree/url and the
+        # second value will be the url under which the current url was found.
         self.trees_and_branches = []
         # user choice for verbosity
         self.verbose = verbose
@@ -38,19 +38,19 @@ class UrlMonkey():
 
         # iterate through string and return index of third slash
         for idx, letter in enumerate(tree):
-            if (letter == '/'):
+            if letter == '/':
                 slash_counter += 1
-                if (slash_counter == 3):
+                if slash_counter == 3:
                     return tree[:idx + 1]
 
         # append a slash if less than three slashes were found
-        return (tree + '/')
+        return tree + '/'
 
     def __is_tree_known(self, tree):
         """ tests if a given tree is already in the list """
 
         for known_tree in self.trees_and_branches:
-            if (tree == known_tree[0]):
+            if tree == known_tree[0]:
                 return 1
         return 0
 
@@ -66,29 +66,29 @@ class UrlMonkey():
             # find all href attributes
             branch = branch.get('href')
 
-            if (branch is None):
+            if branch is None:
                 continue
 
             # check if the link found is a new tree(main-url) or a branch           (sub-url)
             # in case of sub-url append it to its root url to make a full and       working url
-            if (not branch.startswith('http')):
-                while (branch.startswith('/')):
+            if not branch.startswith('http'):
+                while branch.startswith('/'):
                     branch = branch[1:]
                 branch = root + branch
 
             # check if url ends with '/'
             # important for later on when appending sub-urls
-            if (not branch.endswith('/')):
+            if not branch.endswith('/'):
                 branch += '/'
 
             # check if branch or tree is already known and add it to the list       if not
-            if (self.__is_tree_known(branch)):
+            if self.__is_tree_known(branch):
                 continue
 
             # found unique branch
             self.trees_and_branches.append([branch, current_tree])
 
-            if (self.verbose is True):
+            if self.verbose is True:
                 print('\t> ' + branch)
 
     def __go_through_tree_list(self):
@@ -100,7 +100,7 @@ class UrlMonkey():
         for known_tree in self.trees_and_branches:
             tree_address = known_tree[0]
 
-            if (self.verbose is True):
+            if self.verbose is True:
                 print('> ' + tree_address)
 
             # giving timeout of 10 seconds
@@ -108,16 +108,16 @@ class UrlMonkey():
             try:
                 search_branches = requests.get(tree_address, timeout=10.0)
             except requests.exceptions.Timeout:
-                if (self.verbose is True):
+                if self.verbose is True:
                     print("\t> timed out...")
                 continue
 
             # check status-code returned by url
             # filter codes other than 200(ok code)
-            if (search_branches.status_code != 200):
+            if search_branches.status_code != 200:
                 status_code = str(search_branches.status_code)
 
-                if (self.verbose is True):
+                if self.verbose is True:
                     print("\t> returned " + status_code + "(bad code)...")
                 continue
 
@@ -126,7 +126,7 @@ class UrlMonkey():
             # find all a-tags
             branches = branches.find_all('a')
 
-            if (branches is None):
+            if branches is None:
                 continue
 
             # investigate the tree
@@ -142,7 +142,7 @@ class UrlMonkey():
 
         # check if url ends with '/'
         # important for later on when appending sub-urls
-        if (not tree.endswith('/')):
+        if not tree.endswith('/'):
             tree += '/'
 
         # add starting-tree to list

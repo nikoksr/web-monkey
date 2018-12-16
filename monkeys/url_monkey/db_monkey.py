@@ -1,8 +1,7 @@
-""" imports """
 import sqlite3
 
 
-class DatabaseMonkey():
+class DatabaseMonkey:
     """
     A monkey thats gonna create a database based on the collected urls from the url-monkey
     """
@@ -37,7 +36,7 @@ class DatabaseMonkey():
     def attach_to_urlmonkey(self, url_monkey=None):
         """ Attach to a url-monkey to gain access to its url-list """
 
-        if (url_monkey is None):
+        if url_monkey is None:
             print("You have to provide a valid url-monkey.")
             return
 
@@ -45,6 +44,8 @@ class DatabaseMonkey():
 
     def parse_urllist(self):
         """ Parse the urls from the url-monkey list into the database """
+
+        conn = None
 
         try:
             # connect to database
@@ -63,5 +64,5 @@ class DatabaseMonkey():
             # commit the changes
             conn.commit()
         finally:
-            if (conn is not None):
+            if conn is not None:
                 conn.close()
