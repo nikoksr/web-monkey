@@ -69,8 +69,8 @@ class UrlMonkey:
             if branch is None:
                 continue
 
-            # check if the link found is a new tree(main-url) or a branch           (sub-url)
-            # in case of sub-url append it to its root url to make a full and       working url
+            # check if the link found is a new tree(main-url) or a branch (sub-url)
+            # in case of sub-url append it to its root url to make a full and working url
             if not branch.startswith('http'):
                 while branch.startswith('/'):
                     branch = branch[1:]
@@ -81,7 +81,7 @@ class UrlMonkey:
             if not branch.endswith('/'):
                 branch += '/'
 
-            # check if branch or tree is already known and add it to the list       if not
+            # check if branch or tree is already known and add it to the list if not
             if self.__is_tree_known(branch):
                 continue
 
