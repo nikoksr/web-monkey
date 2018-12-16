@@ -1,10 +1,9 @@
-""" imports """
 import argparse
 from bs4 import BeautifulSoup
 import requests
 
 
-class PicMonkey():
+class PicMonkey:
     """
     A monkey that either finds all pictures on a website
     or searches for a picture with a specified tag
