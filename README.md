@@ -1,11 +1,11 @@
-Web Monkey
-==========
+# Web Monkey
+
 
 Small web-crawler created with the imagination of monkeys jumping from tree to tree
 
 
-Idea
-====
+## Idea
+
 
   * Url Monkey
 
@@ -36,7 +36,6 @@ Idea
     return leafs which fulfill the wanted search-tag.
 
 
-Python
-======
+## Python
 
 Python 3.7 and pep 8
