@@ -1,66 +1,73 @@
-from url_monkey import UrlMonkey
-from db_monkey import DatabaseMonkey
+''' imports '''
 from argparse import ArgumentParser
+
+from db_monkey import DatabaseMonkey
+from url_monkey import UrlMonkey
 
 
 def create_args():
-    """ arparse wrapper to clean up main function """
+    ''' arparse wrapper to clean up main function '''
 
-    parser = ArgumentParser()
-    parser.add_argument(
+    PARSER = ArgumentParser()
+    PARSER.add_argument(
         '-v',
         '--verbose',
-        action="store_true",
+        action='store_true',
         help='Enter this argument to enable verbosity')
-    parser.add_argument(
+    PARSER.add_argument(
         '-s',
         '--save',
-        help=
-        'Save all urls in a sqlite-database. For this purpose append a database'
-        ' name to this argument (e.g. ... -s url_monkey ...)')
-    parser.add_argument(
+        help='''Save all urls in a sqlite-database. For this purpose append a
+        database name to this argument (e.g. ... -s url_monkey ...)''')
+    PARSER.add_argument(
         'url',
         help='Enter a valid url to start the infinite search for all branches '
         'and trees surrounding it (as example: https://www.python.org/)')
 
-    return parser.parse_args()
+    return PARSER.parse_args()
 
 
 def write_urls_to_db(args, url_monkey):
-    """ database monkey wrapper to clean up main function """
+    ''' database monkey wrapper '''
 
-    # database name defined by user
-    db_name = args.save + '.db'
+    # Database name defined by user
+    db_name = args.save
+    if not db_name.endswith('.db'):
+        db_name += '.db'
 
-    # create database monkey
-    chimp = DatabaseMonkey(db_name)
-    chimp.attach_to_urlmonkey(url_monkey)
+    # Create database monkey
+    CHIMP = DatabaseMonkey(db_name)
+    CHIMP.attach_to_urlmonkey(url_monkey)
 
-    # the number of urls found by the url-monkey
+    # The number of urls found by the url-monkey
     number_of_urls = str(len(url_monkey.trees_and_branches))
 
-    # information for the user and save data to database
-    print("Writing {} urls to database {}...".format(number_of_urls, db_name))
-    chimp.parse_urllist()
-    print("Done...")
+    # Information for the user and save data to database
+    print(f'Writing {number_of_urls} urls to database {db_name}...')
+    CHIMP.parse_urllist()
+    print('Done...')
 
 
 def main():
-    """ just a wrapper function """
+    ''' main wrapper function '''
 
-    # read user arguments
-    args = create_args()
-    # create url-monkey
-    donkey_kong = UrlMonkey(args.verbose)
+    # Read user arguments
+    ARGS = create_args()
+    # Create url-monkey
+    DONKEY_KONG = UrlMonkey(ARGS.verbose)
 
-    # start search for trees/urls
-    print("Your monkey starts his tree search...")
-    donkey_kong.search(args.url)
-    print("\nYour monkey finished his tree search...")
+    # Start search for trees/urls
+    print('Your monkey is starting his tree search...')
+    DONKEY_KONG.search(ARGS.url)
 
-    # if wanted, write trees/urls to database
-    if args.save:
-        write_urls_to_db(args, donkey_kong)
+    # Finish run
+    NUM_TREES = len(DONKEY_KONG.trees_and_branches)
+    print('\nYour monkey finished his tree search...')
+    print(f'He found {NUM_TREES} urls...')
+
+    # If wanted, write trees/urls to database
+    if (ARGS.save):
+        write_urls_to_db(ARGS, DONKEY_KONG)
 
 
 if __name__ == '__main__':
