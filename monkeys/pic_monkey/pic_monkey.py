@@ -1,17 +1,18 @@
 import argparse
-from bs4 import BeautifulSoup
+
 import requests
+from bs4 import BeautifulSoup
 
 
 class PicMonkey:
-    """
+    '''
     A monkey that either finds all pictures on a website
     or searches for a picture with a specified tag
-    """
+    '''
 
     @staticmethod
     def __format_pic_url(tree, branch):
-        """ Formats a given url to the wanted standard format """
+        ''' Formats a given url to the wanted standard format '''
 
         if branch[0] == '/':
             branch = branch[1:len(branch)]
@@ -31,10 +32,10 @@ class PicMonkey:
 
     @staticmethod
     def __find_leafs(tree):
-        """
+        '''
         Finds leafs in a given tree
         Leafs represent pictures which are found at the different branches of a tree
-        """
+        '''
 
         search_branches = requests.get(tree)
         branches = BeautifulSoup(search_branches.content, 'html.parser')
@@ -43,7 +44,7 @@ class PicMonkey:
         return leafs
 
     def look_for_specific_pics(self, tree=None, tag=None):
-        """ Searches for pictures which include the given tag """
+        ''' Searches for pictures which include the given tag '''
 
         if tree is None or tag is None:
             print('Invalid link or tag')
@@ -71,7 +72,7 @@ class PicMonkey:
             pass
 
     def look_for_all_pics(self, tree=None):
-        """ Searches for all pictures on a given website """
+        ''' Searches for all pictures on a given website '''
 
         if tree is None:
             print('Invalid URL')
@@ -98,12 +99,12 @@ class PicMonkey:
 if __name__ == '__main__':
     PARSER = argparse.ArgumentParser()
     PARSER.add_argument(
-        "url",
-        help="Enter a valid url to "
-        "start the search for "
-        "all pictures on this "
-        "website")
-    PARSER.add_argument("--tag", help="Enter a tag to specify your search")
+        'url',
+        help='Enter a valid url to '
+        'start the search for '
+        'all pictures on this '
+        'website')
+    PARSER.add_argument('--tag', help='Enter a tag to specify your search')
     ARGS = PARSER.parse_args()
     DONKEY_KONG = PicMonkey()
 

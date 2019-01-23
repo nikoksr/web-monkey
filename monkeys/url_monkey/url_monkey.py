@@ -1,4 +1,4 @@
-""" imports """
+''' imports '''
 import re
 import time
 
@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 
 
 class UrlMonkey():
-    """
+    '''
     Web crawler class called (url-)monkey
         * They swing from tree to tree and discover branches and new trees
         * Every tree represents a main-url
@@ -17,10 +17,10 @@ class UrlMonkey():
             (e.g.   - main: https://www.python.org/
                     - sub:  https://www.python.org/about/)
         * Every unique tree or branch gets reported to the user
-    """
+    '''
 
     def __init__(self, verbose):
-        """ Inits urlmonkey class with an empty tree list """
+        ''' Inits urlmonkey class with an empty tree list '''
 
         # This is going to be the list filled with trees and branches that are
         #  already known. It's going to be multi-dimensional. The first value
@@ -33,11 +33,11 @@ class UrlMonkey():
 
     @staticmethod
     def extract_root(tree):
-        """
+        '''
         Returns the root of a tree (main-url of a sub-url)
             e.g.:   tree: https://www.python.org/about/
                     root: https://www.python.org/
-        """
+        '''
 
         tree_re = re.compile(
             r'''
@@ -73,7 +73,7 @@ class UrlMonkey():
         return root + branch_re.search(branch)[2]
 
     def is_tree_known(self, tree):
-        """ Tests if a given tree is already in the list """
+        ''' Tests if a given tree is already in the list '''
 
         for known_tree in self.trees_and_branches:
             if tree == known_tree[0]:
@@ -81,7 +81,7 @@ class UrlMonkey():
         return 0
 
     def investigate_tree(self, branches, current_tree):
-        """ Iterate through all branches of a tree """
+        ''' Iterate through all branches of a tree '''
 
         # Find the root of the current tree
         # e.g.: current tree    = https://www.python.org/downloads
@@ -113,10 +113,10 @@ class UrlMonkey():
                 print('\t> ' + branch)
 
     def go_through_tree_list(self):
-        """
+        '''
         Iterate through list of known trees and branches and
         investigate each
-        """
+        '''
 
         for known_tree in self.trees_and_branches:
             tree = known_tree[0]
@@ -131,7 +131,7 @@ class UrlMonkey():
                 search_branches = requests.get(tree, timeout=10.0)
             except requests.exceptions.Timeout:
                 if self.verbose is True:
-                    print("\t> timed out...")
+                    print('\t> timed out...')
                 continue
 
             # Check status-code returned by url
@@ -140,7 +140,7 @@ class UrlMonkey():
                 status_code = str(search_branches.status_code)
 
                 if self.verbose is True:
-                    print("\t> returned " + status_code + "(bad code)...")
+                    print('\t> returned ' + status_code + '(bad code)...')
                 continue
 
             # Parse html of requested page
@@ -155,7 +155,7 @@ class UrlMonkey():
             self.investigate_tree(branches, tree)
 
     def search(self, tree):
-        """ Searches for new trees starting from the root """
+        ''' Searches for new trees starting from the root '''
 
         # Check if user provided an url
         if tree is None:
@@ -169,7 +169,7 @@ class UrlMonkey():
         tree = tree.strip()
 
         # Add starting-tree to list
-        self.trees_and_branches.append([tree, "None"])
+        self.trees_and_branches.append([tree, 'None'])
 
         try:
             self.go_through_tree_list()
