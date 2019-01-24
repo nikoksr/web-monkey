@@ -37,6 +37,6 @@ Small web-crawler created with the imagination of monkeys jumping from tree to t
     The user can give the monkey a search-tag to specify his search for leafs. The monkey is only 
     going to return leafs which match the wanted search-tag.
 
-## Python :snake
+## Python :snake:
 
 Python 3.7 and pep8
