@@ -32,8 +32,7 @@ class DatabaseMonkey():
         # was found.
         cursor.execute(
             '''create table if not exists urls (id integer primary key,
-            url text, came_from_tree text)'''
-        )
+            url text, origin text)''')
         conn.commit()
         conn.close()
 
@@ -58,9 +57,8 @@ class DatabaseMonkey():
             # into the table.
             for idx, tree in enumerate(self.url_monkey.trees_and_branches):
                 cursor.execute(
-                    '''insert or ignore into urls(id, url, came_from_tree)
-                    values (?,?,?)''',
-                    (
+                    '''insert or ignore into urls(id, url, origin)
+                    values (?,?,?)''', (
                         idx,
                         tree[0],
                         tree[1],
