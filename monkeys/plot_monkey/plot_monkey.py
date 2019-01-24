@@ -58,7 +58,11 @@ class PlotMonkey():
         labels = urls.keys()
         sizes = urls.values()
 
-        fig1, ax1 = plt.subplots()
-        ax1.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90)
-        ax1.axis('equal')
+        fig, ax = plt.subplots()
+        fig.suptitle(
+            'Rational distribution of urls found under an url',
+            fontsize=14,
+            fontweight='bold')
+        ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90)
+        ax.axis('equal')
         plt.show()
