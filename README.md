@@ -1,4 +1,4 @@
-# Web Monkey
+# Web Monkey :monkey:
 
 Small web-crawler created with the imagination of monkeys jumping from tree to tree.
 
@@ -6,7 +6,7 @@ Small web-crawler created with the imagination of monkeys jumping from tree to t
 
   * Url Monkey
 
-    A monkey jumps on a tree which represents an URL. On his way climbing up the tree
+    A monkey jumps on a tree which represents an url. On his way climbing up the tree
     the monkey discovers many branches which visualize sub-urls of the main-url.
 
     Example
@@ -22,14 +22,20 @@ Small web-crawler created with the imagination of monkeys jumping from tree to t
     chooses the first tree on the list following his current tree and jumps over to it.
 
     He repeats this process over and over again.
+    
+  * Plot Monkey
+    
+    A monkey that takes a database, created by an UrlMonkey, and creates plots based on the data.
+    He tries to visualize the connections and distribution of urls found under a given url.
 
   * Pic Monkey
 
-    A monkey jumps on a tree and starts discovering its branches, where he finds leafs. Leafs
-    represent pictures. The monkey notes every leaf on his list and after discovering every leaf
-    the tree has to offer, the monkey returns the list to the user.
-    The user can give the monkey a search-tag to specify his search for leafs. The monkey is only going to
-    return leafs which fulfill the wanted search-tag.
+    A monkey jumps on a tree and starts discovering its branches where he finds leafs. Leafs
+    represent sub-objects of urls; pictures in this case. The monkey notes every leaf on his list 
+    and after discovering every leaf the tree has to offer, the monkey returns the list to the user.
+    The user now has a list of all pictures found under the given url.
+    The user can give the monkey a search-tag to specify his search for leafs. The monkey is only 
+    going to return leafs which match the wanted search-tag.
 
 ## Python
 
