@@ -2,7 +2,7 @@
 
 Small web-crawler created with the imagination of monkeys jumping from tree to tree.
 
-## Idea
+## Idea :bulb:
 
   * Url Monkey
 
@@ -11,8 +11,8 @@ Small web-crawler created with the imagination of monkeys jumping from tree to t
 
     Example
 
-    * main-url (tree)  -> https://www.python.org/
-    * sub-url (branch) -> https://www.python.org/about/
+    * main-url (tree):  https://www.python.org/
+    * sub-url (branch): https://www.python.org/about/
 
     All of them are being noted on a list of known trees, but only if they aren't already
     known and noted at this point in time. On his way to the treetop the monkey eventually
@@ -37,6 +37,6 @@ Small web-crawler created with the imagination of monkeys jumping from tree to t
     The user can give the monkey a search-tag to specify his search for leafs. The monkey is only 
     going to return leafs which match the wanted search-tag.
 
-## Python
+## Python :snake
 
 Python 3.7 and pep8
