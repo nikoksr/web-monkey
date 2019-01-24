@@ -66,15 +66,15 @@ class PlotMonkey():
         cmap = plt.get_cmap('terrain')
         colors = cmap(np.arange(0, num_colors, step))
 
-        # explsion
+        # Explosion
         explode = (0.05, ) * num_labels
 
         # Create pie
         fig1, ax = plt.subplots()
         fig1.suptitle(
-            'Rational distribution of urls found under an url',
-            fontsize=14,
-            fontweight='bold')
+            'Distribution of urls found under an url relative to the total '
+            'number of urls',
+            fontsize=14)
 
         patches, texts, autotexts = ax.pie(
             sizes,
@@ -84,12 +84,21 @@ class PlotMonkey():
             explode=explode,
             colors=colors)
 
-        # Draw circle
+        # Make doughnut shape
         center_circle = plt.Circle((0, 0), 0.70, fc='white')
         fig2 = plt.gcf()
         fig2.gca().add_artist(center_circle)
 
         # Ensure that pie is drawn as a circle and draw pie
         ax.axis('equal')
+
+        # Add legend and show pie plot
+        plt.text(
+            0,
+            0,
+            f'Total number of urls: {row_count}',
+            horizontalalignment='center',
+            verticalalignment='center')
         plt.legend(labels, loc='best')
+        plt.tight_layout()
         plt.show()
