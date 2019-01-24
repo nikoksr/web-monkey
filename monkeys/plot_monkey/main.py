@@ -1,73 +1,70 @@
+#!/usr/bin/python3
 ''' imports '''
+import sys
 from argparse import ArgumentParser
 
-from db_monkey import DatabaseMonkey
-from url_monkey import UrlMonkey
+from plot_monkey import PlotMonkey
 
 
 def create_args():
-    ''' arparse wrapper to clean up main function '''
+    ''' Arparse wrapper to define possible user args and
+    clean up the main function. '''
 
     PARSER = ArgumentParser()
     PARSER.add_argument(
-        '-v',
-        '--verbose',
+        '--pie',
         action='store_true',
-        help='Enter this argument to enable verbosity')
+        help='Create a pie plot based on a given database.')
     PARSER.add_argument(
-        '-s',
-        '--save',
-        help='''Save all urls in a sqlite-database. For this purpose append a
-        database name to this argument (e.g. ... -s url_monkey ...)''')
-    PARSER.add_argument(
-        'url',
-        help='Enter a valid url to start the infinite search for all branches '
-        'and trees surrounding it (as example: https://www.python.org/)')
+        'db', help='Enter a valid path to a sqlite db created by an UrlMonkey')
 
     return PARSER.parse_args()
 
 
-def write_urls_to_db(args, url_monkey):
-    ''' database monkey wrapper '''
+def evaluate_args(args):
+    ''' Evaluate the arguments. Make sure the right amount
+    of args was given. '''
 
-    # Database name defined by user
-    db_name = args.save
-    if not db_name.endswith('.db'):
-        db_name += '.db'
+    ARGS_NEEDED = 1
+    ARGS_PROVIDED = len(sys.argv) - 2
 
-    # Create database monkey
-    CHIMP = DatabaseMonkey(db_name)
-    CHIMP.attach_to_urlmonkey(url_monkey)
+    # Check if enough args have been provided.
+    # It needs at least a database path and a plot.
+    if ARGS_PROVIDED < ARGS_NEEDED:
+        return 1, ('Not enough args were provided. '
+                   f'{ARGS_PROVIDED} provided and {ARGS_NEEDED} needed.')
 
-    # The number of urls found by the url-monkey
-    number_of_urls = str(len(url_monkey.trees_and_branches))
+    # Check if too many args have been provided.
+    # Only one plot can be chosen.
+    if ARGS_PROVIDED > ARGS_NEEDED:
+        return 2, ('Too many args were provided. '
+                   f'{ARGS_PROVIDED} provided and {ARGS_NEEDED} needed.')
 
-    # Information for the user and save data to database
-    print(f'Writing {number_of_urls} urls to database {db_name}...')
-    CHIMP.parse_urllist()
-    print('Done...')
+    return 0, ''
 
 
 def main():
-    ''' main wrapper function '''
+    ''' Main function '''
 
     # Read user arguments
     ARGS = create_args()
-    # Create url-monkey
-    DONKEY_KONG = UrlMonkey(ARGS.verbose)
 
-    # Start search for trees/urls
-    print('Your monkey is starting his tree search...')
-    DONKEY_KONG.search(ARGS.url)
+    # Evaluate the args
+    res = evaluate_args(ARGS)
 
-    # Finish run
-    NUM_TREES = len(DONKEY_KONG.trees_and_branches)
-    print('\nYour monkey finished his tree search...')
-    print(f'He found {NUM_TREES} urls...')
+    if res[0] != 0:
+        print(res[1])
+        sys.exit(1)
 
-    # If wanted, write trees/urls to database
-    if (ARGS.save):
-        write_urls_to_db(ARGS, DONKEY_KONG)
+    # Create PlotMonkey and run corresponding plot function
+    charlie = PlotMonkey(ARGS.db)
+
+    if not charlie:
+        print('Could\'t create the PlotMonkey.\'')
+        sys.exit(2)
+
+    if ARGS.pie:
+        charlie.display_pie()
 
 
 if __name__ == '__main__':
