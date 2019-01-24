@@ -66,9 +66,6 @@ class PlotMonkey():
         cmap = plt.get_cmap('terrain')
         colors = cmap(np.arange(0, num_colors, step))
 
-        # Explosion
-        explode = (0.05, ) * num_labels
-
         # Create pie
         fig1, ax = plt.subplots()
         fig1.suptitle(
@@ -81,7 +78,6 @@ class PlotMonkey():
             autopct='%1.1f%%',
             startangle=90,
             pctdistance=0.85,
-            explode=explode,
             colors=colors)
 
         # Make doughnut shape
