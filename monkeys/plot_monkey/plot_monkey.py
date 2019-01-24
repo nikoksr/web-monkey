@@ -66,19 +66,30 @@ class PlotMonkey():
         cmap = plt.get_cmap('terrain')
         colors = cmap(np.arange(0, num_colors, step))
 
+        # explsion
+        explode = (0.05, ) * num_labels
+
         # Create pie
-        fig, ax = plt.subplots()
-        fig.suptitle(
+        fig1, ax = plt.subplots()
+        fig1.suptitle(
             'Rational distribution of urls found under an url',
             fontsize=14,
             fontweight='bold')
+
         patches, texts, autotexts = ax.pie(
             sizes,
-            labels=labels,
             autopct='%1.1f%%',
             startangle=90,
+            pctdistance=0.85,
+            explode=explode,
             colors=colors)
+
+        # Draw circle
+        center_circle = plt.Circle((0, 0), 0.70, fc='white')
+        fig2 = plt.gcf()
+        fig2.gca().add_artist(center_circle)
 
         # Ensure that pie is drawn as a circle and draw pie
         ax.axis('equal')
+        plt.legend(labels, loc='best')
         plt.show()
