@@ -53,7 +53,7 @@ class PlotMonkey():
         conn.close()
 
         # Pack up small ratios in dictionary
-        urls = self.packup_small_ratios(urls, 1.0)
+        urls = self.packup_small_ratios(urls, 3.0)
 
         # Set labels and sizes based on keys and values from url-dict
         labels = urls.keys()
