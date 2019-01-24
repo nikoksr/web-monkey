@@ -3,6 +3,7 @@
 import sqlite3
 
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 class PlotMonkey():
@@ -54,15 +55,30 @@ class PlotMonkey():
         # Pack up small ratios in dictionary
         urls = self.packup_small_ratios(urls, 1.0)
 
-        # Draw pie plot
+        # Set labels and sizes based on keys and values from url-dict
         labels = urls.keys()
         sizes = urls.values()
 
+        # Colors
+        num_labels = len(labels)
+        num_colors = 256
+        step = int(float(num_colors) / float(num_labels))
+        cmap = plt.get_cmap('terrain')
+        colors = cmap(np.arange(0, num_colors, step))
+
+        # Create pie
         fig, ax = plt.subplots()
         fig.suptitle(
             'Rational distribution of urls found under an url',
             fontsize=14,
             fontweight='bold')
-        ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90)
+        patches, texts, autotexts = ax.pie(
+            sizes,
+            labels=labels,
+            autopct='%1.1f%%',
+            startangle=90,
+            colors=colors)
+
+        # Ensure that pie is drawn as a circle and draw pie
         ax.axis('equal')
         plt.show()
