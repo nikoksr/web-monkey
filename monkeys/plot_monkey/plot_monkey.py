@@ -69,7 +69,7 @@ class PlotMonkey():
         # Create pie
         fig1, ax = plt.subplots()
         fig1.suptitle(
-            'Distribution of urls found under an url relative to the total '
+            'Distribution of found urls relative to the total '
             'number of urls',
             fontsize=14)
 
