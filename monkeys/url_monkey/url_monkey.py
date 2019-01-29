@@ -42,7 +42,7 @@ class UrlMonkey():
         tree_re = re.compile(
             r'''
                 (https?://|ftp://)  # protocol
-                ([A-Za-z.]{2,}/?)   # domain and countrycode
+                ([A-Za-z.-]{4,}/?)   # domain and countrycode
                 (.*)                # rest of url
             ''', re.VERBOSE)
         mo = tree_re.search(tree)
@@ -63,7 +63,7 @@ class UrlMonkey():
         Formats the branch-url depending on its origin.
         '''
 
-        if not branch.endswith('/'):
+        if not branch.endswith('.html') and not branch.endswith('/'):
             branch += '/'
 
         if branch.startswith('http') or branch.startswith('ftp'):
