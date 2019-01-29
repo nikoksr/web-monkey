@@ -63,11 +63,11 @@ class UrlMonkey():
         Formats the branch-url depending on its origin.
         '''
 
-        if not branch.endswith('.html') and not branch.endswith('/'):
-            branch += '/'
-
-        if branch.startswith('http') or branch.startswith('ftp'):
+        if branch.startswith(('http', 'ftp', 'mailto:', 'tel:')):
             return branch
+
+        if not branch.endswith(('.html', '/')):
+            branch += '/'
 
         branch_re = re.compile(r'(/*)?(.+)')
         return root + branch_re.search(branch)[2]
@@ -164,7 +164,7 @@ class UrlMonkey():
 
         # Check if url ends with '/' - important for later on when
         # appending sub-urls.
-        if not tree.endswith('/'):
+        if not tree.endswith(('.html', '/')):
             tree += '/'
         tree = tree.strip()
 
