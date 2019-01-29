@@ -20,10 +20,10 @@ class UrlMonkey():
     '''
 
     def __init__(self, verbose):
-        ''' Inits urlmonkey class with an empty tree list '''
+        ''' Init urlmonkey class with an empty tree list. '''
 
-        # This is going to be the list filled with trees and branches that are
-        #  already known. It's going to be multi-dimensional. The first value
+        # The list to be filled with trees and branches that are already known.
+        # It's going to be multi-dimensional. The first value
         #  will be the tree/url and the second value will be the url under
         #  which the current url was found.
         self.trees_and_branches = []
@@ -35,8 +35,8 @@ class UrlMonkey():
     def extract_root(tree):
         '''
         Returns the root of a tree (main-url of a sub-url)
-            e.g.:   tree: https://www.python.org/about/
-                    root: https://www.python.org/
+          e.g.:   tree: https://www.python.org/about/
+                  root: https://www.python.org/
         '''
 
         tree_re = re.compile(
@@ -81,7 +81,7 @@ class UrlMonkey():
         return 0
 
     def investigate_tree(self, branches, current_tree):
-        ''' Iterate through all branches of a tree '''
+        ''' Iterate through all branches of a tree. '''
 
         # Find the root of the current tree
         # e.g.: current tree    = https://www.python.org/downloads
@@ -115,7 +115,7 @@ class UrlMonkey():
     def go_through_tree_list(self):
         '''
         Iterate through list of known trees and branches and
-        investigate each
+        investigate each.
         '''
 
         for known_tree in self.trees_and_branches:
@@ -124,10 +124,10 @@ class UrlMonkey():
             if self.verbose is True:
                 print('> ' + tree)
 
-            # Giving timeout of 10 seconds
-            # Prevent infinite request-time
+            # Prevent instability due to too rapid requests
             time.sleep(0.01)
             try:
+                # Giving timeout of 10 seconds to prevent infinite request-time
                 search_branches = requests.get(tree, timeout=10.0)
             except requests.exceptions.Timeout:
                 if self.verbose is True:
@@ -155,7 +155,7 @@ class UrlMonkey():
             self.investigate_tree(branches, tree)
 
     def search(self, tree):
-        ''' Searches for new trees starting from the root '''
+        ''' Searches for new trees starting from the root. '''
 
         # Check if user provided an url
         if tree is None:
