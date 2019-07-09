@@ -1,8 +1,8 @@
-# Web Monkey :monkey:
+<h1 align="center">:monkey: Web Monkey</h1>
 
-Small web-crawler created with the imagination of monkeys jumping from tree to tree.
+<p align="center">Small web-crawler created with the imagination of monkeys jumping from tree to tree.</p>
 
-## Idea :bulb:
+## :bulb: Idea
 
   * Url Monkey
 
@@ -37,6 +37,6 @@ Small web-crawler created with the imagination of monkeys jumping from tree to t
     The user can give the monkey a search-tag to specify his search for leafs. The monkey is only 
     going to return leafs which match the wanted search-tag.
 
-## Python :snake:
+## :snake: Python
 
 Python 3.7
