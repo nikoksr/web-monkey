@@ -39,4 +39,4 @@ Small web-crawler created with the imagination of monkeys jumping from tree to t
 
 ## Python :snake:
 
-Python 3.7 and pep8
+Python 3.7
