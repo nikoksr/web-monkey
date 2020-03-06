@@ -30,15 +30,15 @@
     A monkey that takes a database, created by an UrlMonkey, and creates plots based on the data.
     He tries to visualize the connections and distribution of urls found under a given url.
 
-    Crawl URLs til `Ctrl-C` and save the results afterwards:
+    > Crawl URLs til `Ctrl-C` and save the results afterwards:
 
     <img src="assets/images/web-monkey-save.png" alt="web-monkey save" />
 
-    Create the plot:
+    > Create the plot:
 
     <img src="assets/images/plot-monkey.png" alt="plot-monkey example" />
 
-    The resulting plot:
+    > The resulting plot:
 
     <img src="assets/images/plot-monkey-result.png" alt="plot-monkey result" />
 
@@ -50,3 +50,14 @@
     The user now has a list of all pictures found under the given url.
     The user can give the monkey a search-tag to specify his search for leafs. The monkey is only
     going to return leafs which match the wanted search-tag.
+
+
+    > You can search pictures by tag. This searches the given tag in the `src` and `alt` attributes of all images.
+
+    <img src="assets/images/pic-monkey-example-1.png" alt="pic-monkey example 1" />
+
+    <img src="assets/images/pic-monkey-example-2.png" alt="pic-monkey example 2" />
+
+    > Or you can search without a tag which will give you a list of all images on that page.
+
+    <img src="assets/images/pic-monkey-example-3.png" alt="pic-monkey example 3" />
