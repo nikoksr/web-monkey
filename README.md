@@ -2,8 +2,6 @@
 
 <p align="center">Small web-crawler created with the imagination of monkeys jumping from tree to tree.</p>
 
-<img src="assets/gifs/web-monkey-example.gif" alt="web-monkey example" />
-
 ### Idea
 
 -   **Url Monkey**
@@ -25,10 +23,24 @@
 
     He repeats this process over and over again.
 
+    <img src="assets/gifs/web-monkey-example.gif" alt="web-monkey example" />
+
 -   **Plot Monkey**
 
     A monkey that takes a database, created by an UrlMonkey, and creates plots based on the data.
     He tries to visualize the connections and distribution of urls found under a given url.
+
+    Crawl URLs til `Ctrl-C` and save the results afterwards:
+
+    <img src="assets/images/web-monkey-save.png" alt="web-monkey save" />
+
+    Create the plot:
+
+    <img src="assets/images/plot-monkey.png" alt="plot-monkey example" />
+
+    The resulting plot:
+
+    <img src="assets/images/plot-monkey-result.png" alt="plot-monkey result" />
 
 -   **Pic Monkey**
 
