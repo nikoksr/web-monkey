@@ -4,7 +4,7 @@
 
 ### Idea
 
--   Url Monkey
+-   **Url Monkey**
 
     A monkey jumps on a tree which represents an url. On his way climbing up the tree
     the monkey discovers many branches which visualize sub-urls of the main-url.
@@ -23,12 +23,26 @@
 
     He repeats this process over and over again.
 
--   Plot Monkey
+    <img src="assets/gifs/web-monkey-example.gif" alt="web-monkey example" />
+
+-   **Plot Monkey**
 
     A monkey that takes a database, created by an UrlMonkey, and creates plots based on the data.
     He tries to visualize the connections and distribution of urls found under a given url.
 
--   Pic Monkey
+    > Crawl URLs til `Ctrl-C` and save the results afterwards:
+
+    <img src="assets/images/web-monkey-save.png" alt="web-monkey save" />
+
+    > Create the plot:
+
+    <img src="assets/images/plot-monkey.png" alt="plot-monkey example" />
+
+    > The resulting plot:
+
+    <img src="assets/images/plot-monkey-result.png" alt="plot-monkey result" />
+
+-   **Pic Monkey**
 
     A monkey jumps on a tree and starts discovering its branches where he finds leafs. Leafs
     represent sub-objects of urls; pictures in this case. The monkey notes every leaf on his list
@@ -36,3 +50,14 @@
     The user now has a list of all pictures found under the given url.
     The user can give the monkey a search-tag to specify his search for leafs. The monkey is only
     going to return leafs which match the wanted search-tag.
+
+
+    > You can search pictures by tag. This searches the given tag in the `src` and `alt` attributes of all images.
+
+    <img src="assets/images/pic-monkey-example-1.png" alt="pic-monkey example 1" />
+
+    <img src="assets/images/pic-monkey-example-2.png" alt="pic-monkey example 2" />
+
+    > Or you can search without a tag which will give you a list of all images on that page.
+
+    <img src="assets/images/pic-monkey-example-3.png" alt="pic-monkey example 3" />
