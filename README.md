@@ -2,9 +2,11 @@
 
 <p align="center">Small web-crawler created with the imagination of monkeys jumping from tree to tree.</p>
 
+<img src="assets/gifs/web-monkey-example.gif" alt="web-monkey example" />
+
 ### Idea
 
--   Url Monkey
+-   **Url Monkey**
 
     A monkey jumps on a tree which represents an url. On his way climbing up the tree
     the monkey discovers many branches which visualize sub-urls of the main-url.
@@ -23,12 +25,12 @@
 
     He repeats this process over and over again.
 
--   Plot Monkey
+-   **Plot Monkey**
 
     A monkey that takes a database, created by an UrlMonkey, and creates plots based on the data.
     He tries to visualize the connections and distribution of urls found under a given url.
 
--   Pic Monkey
+-   **Pic Monkey**
 
     A monkey jumps on a tree and starts discovering its branches where he finds leafs. Leafs
     represent sub-objects of urls; pictures in this case. The monkey notes every leaf on his list
